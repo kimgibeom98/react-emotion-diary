@@ -1,4 +1,11 @@
+import { useSearchParams } from "react-router-dom";
+
 const Edit = () => {
+
+    const [searchParams, setsearchParams] = useSearchParams();
+    const id = searchParams.get("id");
+    const mode = searchParams.get("mode");
+    
     return (
         <div>
             <h1>Edit</h1>
