@@ -12,3 +12,11 @@ body{background-color: #f6f6f6; display: flex; justify-content: center; align-it
 
 #root{background-color: white; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;}
 .App{min-height: 100vh; padding: 0 20px; box-sizing: border-box;}
+
+
+/* MyButton */
+
+.MyButton{cursor: pointer;   border: none; border-radius: 5px; padding: 10px 20px; font-size: 18px; white-space: nowrap;  font-family: 'Nanum Pen Script'} 
+.MyButton_default{background-color: #ececec; color: black;}
+.MyButton_positive{background-color: #64c964; color: white;}
+.MyButton_negative{background-color: #fd565f; color: white;}
