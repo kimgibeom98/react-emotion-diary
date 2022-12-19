@@ -8,6 +8,7 @@ import Diary from './pages/Diary';
 
 //COMPONENTS
 import MyButton from './components/MyButton';
+import MyHeader from './components/MyHeader';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
+        <MyHeader headText={"app"}/>
         <h2>App.js</h2>
         <MyButton text={'버튼'} onClick={() => alert("버튼클릭")} type={"positive"}/>
         <MyButton text={'버튼'} onClick={() => alert("버튼클릭")} type={"negative"}/>
