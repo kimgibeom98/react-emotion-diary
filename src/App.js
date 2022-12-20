@@ -8,36 +8,76 @@ import Edit from './pages/Edit';
 import Diary from './pages/Diary';
 
 
+const reduce = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case 'INIT': {
+      return action.data;
+    }
+    case 'CREATE': {
+      newState = [action.data, ...state]
+      break;
+    }
+    case 'REMOVE': {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
+    }
+    case "EDIT": {
+      newState = state.map((it) =>
+        it.id === action.data.id ? { ...action.data } : it
+      );
+      break;
+    }
+    default:
+      return state
+  }
+  return newState;
+}
+
+
 export const DiaryStateContext = React.createContext();
 export const DiaryDisaptchContext = React.createContext();
-function App() {
 
-  const reduce = (state, action) => {
-    let newState = [];
-    switch (action.type) {
-      case 'INIT': {
-        return action.data;
-      }
-      case 'CREATE': {
-        newState = [action.data, ...state]
-        break;
-      }
-      case 'REMOVE': {
-        newState = state.filter((it) => it.id !== action.targetId);
-        break;
-      }
-      case "EDIT": {
-        newState = state.map((it) =>
-          it.id === action.data.id ? { ...action.data } : it
-        );
-        break;
-      }
-      default:
-        return state
-    }
-    return newState;
+
+const dummyData = [
+  {
+    id : 1,
+    emotion : 1,
+    content: "오늘의 일기 1번",
+    date : 1671542805931
+  },
+  {
+    id : 2,
+    emotion : 2,
+    content: "오늘의 일기 2번",
+    date : 1671542805932
+  },
+  {
+    id : 3,
+    emotion : 3,
+    content: "오늘의 일기 3번",
+    date : 1671542805933
   }
-  const [data, dispatch] = useReducer(reduce, []);
+  ,
+  {
+    id : 4,
+    emotion : 4,
+    content: "오늘의 일기4번",
+    date : 1671542805934
+  }
+  ,
+  {
+    id : 5,
+    emotion : 5,
+    content: "오늘의 일기 5번",
+    date : 1671542805935
+  }
+]
+
+
+
+function App() {
+  const [data, dispatch] = useReducer(reduce, dummyData);
 
 
   const dataId = useRef(0);
