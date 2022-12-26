@@ -45,3 +45,8 @@ header button{font-family: "Nanum pen Script";}
 .DiaryItem .emotion_img_wrapper_5{background-color: #fd565f;}
 .DiaryItem .emotion_img_wrapper img{width: 50%;}
 
+.DiaryItem .info_wrapper{cursor: pointer; flex-grow: 1; margin-left: 20px;}
+.DiaryItem .diary_date{font-weight: bold; font-size: 25px; margin-bottom: 5px;}
+.DiaryItem .diary_content_preview{font-size: 18px;}
+
+.DiaryItem .btn_wrapper{min-width: 70px;}
