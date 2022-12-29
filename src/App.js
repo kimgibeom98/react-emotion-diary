@@ -38,7 +38,6 @@ const reduce = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDisaptchContext = React.createContext();
 
-
 const dummyData = [
   {
     id : 1,
@@ -78,11 +77,12 @@ const dummyData = [
 
 function App() {
   const [data, dispatch] = useReducer(reduce, dummyData);
-
+  console.log(data)
 
   const dataId = useRef(0);
   // CREATE
   const onCreate = (date, content, emotion) => {
+    console.log(date, content, emotion)
     dispatch({
       type: "CREATE", data: {
         id: dataId.current,

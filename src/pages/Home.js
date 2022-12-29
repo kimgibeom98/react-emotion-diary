@@ -33,7 +33,7 @@ const Home = () => {
   }, [diarylist, curDate])
 
   useEffect(() => {
-    console.log(data)
+
   }, [data])
 
 
