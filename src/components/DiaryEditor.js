@@ -63,6 +63,10 @@ const handleClickEmote = (emotion) => {
             {emotionList.map((it)=> <EmotionItem  key={it.emotion_id} {...it} onClick={handleClickEmote}  isSelected={it.emotion_id === emotion}/> )}
           </div>
         </section>
+        <section>
+          <h4>오늘의 일기</h4>
+          <div className="input_box text_wrapper"></div>
+        </section>
       </div>
     </div>
   )
