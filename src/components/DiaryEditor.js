@@ -58,7 +58,7 @@ const DiaryEditor = () => {
       contentRef.current.focus();
       return;
     }
-    onCreate(date, content, emotion);
+    onCreate(emotion, content, date);
     navigate('/', {replace : true})
   }
 

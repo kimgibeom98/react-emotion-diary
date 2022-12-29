@@ -77,18 +77,16 @@ const dummyData = [
 
 function App() {
   const [data, dispatch] = useReducer(reduce, dummyData);
-  console.log(data)
 
   const dataId = useRef(0);
   // CREATE
-  const onCreate = (date, content, emotion) => {
-    console.log(date, content, emotion)
+  const onCreate = (emotion, content, date) => {
     dispatch({
       type: "CREATE", data: {
         id: dataId.current,
-        data: new Date(date).getTime(),
+        emotion,
         content,
-        emotion
+        date: new Date(date).getTime()
       }
     })
     dataId.current += 1;
@@ -109,6 +107,9 @@ function App() {
       }
     })
   }
+
+  console.log(data)
+
   return (
     <DiaryStateContext.Provider value={data}>
       <DiaryDisaptchContext.Provider value={{
