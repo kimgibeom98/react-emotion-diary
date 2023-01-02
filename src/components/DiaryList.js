@@ -33,7 +33,6 @@ const DiaryList = ({ diaryList }) => {
 
   const getProcesedDiaryList = () => {
 
-
     const filterCallBack = (item) => {
       if (filter === 'good') {
         return parseInt(item.emotion) <= 3;
