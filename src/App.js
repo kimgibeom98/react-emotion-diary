@@ -38,38 +38,39 @@ const reduce = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDisaptchContext = React.createContext();
 
+console.log(new Date().getTime())
 const dummyData = [
   {
     id : 1,
     emotion : 1,
     content: "오늘의 일기 1번",
-    date : 1671542805931
+    date : 1672638637372
   },
   {
     id : 2,
     emotion : 2,
     content: "오늘의 일기 2번",
-    date : 1671542805932
+    date : 1672638650758
   },
   {
     id : 3,
     emotion : 3,
     content: "오늘의 일기 3번",
-    date : 1671542805933
+    date : 1672638655662
   }
   ,
   {
     id : 4,
     emotion : 4,
     content: "오늘의 일기4번",
-    date : 1671542805934
+    date : 1672638660224
   }
   ,
   {
     id : 5,
     emotion : 5,
     content: "오늘의 일기 5번",
-    date : 1671542805935
+    date : 1672638665552
   }
 ]
 
@@ -86,7 +87,7 @@ function App() {
         id: dataId.current,
         emotion,
         content,
-        date: new Date(date).getTime()
+        date: new Date().getTime()
       }
     })
     dataId.current += 1;
