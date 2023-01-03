@@ -86,7 +86,7 @@ function App() {
         id: dataId.current,
         emotion,
         content,
-        date: new Date().getTime()
+        date: new Date(date).getTime()
       }
     })
     dataId.current += 1;
