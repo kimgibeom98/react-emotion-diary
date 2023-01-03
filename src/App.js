@@ -38,7 +38,6 @@ const reduce = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDisaptchContext = React.createContext();
 
-console.log(new Date().getTime())
 const dummyData = [
   {
     id : 1,
@@ -108,8 +107,6 @@ function App() {
       }
     })
   }
-
-  console.log(data)
 
   return (
     <DiaryStateContext.Provider value={data}>

@@ -17,7 +17,6 @@ const Diary = () => {
   useEffect(() => {
     if (diaryList.length >= 1) {
       const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id))
-      console.log(targetDiary)
       if (targetDiary) {
         setData(targetDiary)
       } else {
