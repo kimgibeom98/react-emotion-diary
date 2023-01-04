@@ -56,7 +56,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
   }, [isEdit, originData])
 
-  console.log(date)
   return (
     <div className="DiaryEditor">
       <MyHeader
