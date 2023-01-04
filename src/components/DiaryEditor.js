@@ -9,8 +9,8 @@ import EmotionItem from "./EmotionItem";
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
 
-
 const DiaryEditor = ({ isEdit, originData }) => {
+
   const contentRef = useRef();
   const [content, setContent] = useState('');
   const [emotion, setEmotion] = useState(3);
@@ -22,7 +22,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  },[]);
+  }, []);
 
   const handelSubmit = () => {
     if (content.length < 1) {
@@ -33,7 +33,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       if (!isEdit) {
         onCreate(emotion, content, date);
       } else {
-        onEdit(originData.id, originData.date, content, emotion);
+        onEdit(originData.id, date, content, emotion);
       }
     }
 
@@ -56,6 +56,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
   }, [isEdit, originData])
 
+  console.log(date)
   return (
     <div className="DiaryEditor">
       <MyHeader

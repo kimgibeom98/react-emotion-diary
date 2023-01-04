@@ -8,11 +8,9 @@ import DiaryList from "../components/DiaryList";
 const Home = () => {
 
   const diarylist = useContext(DiaryStateContext);
-
   const [data, setData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1} 월`
-
 
   useEffect(() => {
     if (diarylist.length >= 1) {
@@ -34,11 +32,6 @@ const Home = () => {
     }
   }, [diarylist, curDate])
 
-  // useEffect(() => {
-  //   console.log(data)
-  // }, [data])
-
-
   const increaseMonth = () => {
     setCurDate(
       new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate())
@@ -57,7 +50,7 @@ const Home = () => {
         headText={headText}
         leftChild={<MyButton text={'<'} onClick={decreaseMonth} />}
         rightChild={<MyButton text={'>'} onClick={increaseMonth} />} />
-        <DiaryList diaryList={data} />
+      <DiaryList diaryList={data} />
     </div>
   )
 };

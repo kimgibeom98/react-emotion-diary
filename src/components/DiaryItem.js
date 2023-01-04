@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
+
 const DiaryItem = ({ id, emotion, content, date }) => {
   // 이미지가 안나올경우 아래코드 2줄 추가
   const env = process.env;
@@ -28,7 +29,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
         <div className="diary_content_preview">{content.slice(0, 25)}</div>
       </div>
       <div>
-        <MyButton text={"수정하기"} onClick={goEdit}/>
+        <MyButton text={"수정하기"} onClick={goEdit} />
       </div>
     </div>
   );

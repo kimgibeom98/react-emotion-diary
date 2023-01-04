@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
@@ -14,6 +13,7 @@ const Diary = () => {
   const diaryList = useContext(DiaryStateContext);
   const navigate = useNavigate();
   const [data, setData] = useState();
+
   useEffect(() => {
     if (diaryList.length >= 1) {
       const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id))

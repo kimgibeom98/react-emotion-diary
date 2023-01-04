@@ -7,7 +7,6 @@ import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
 
-
 const reduce = (state, action) => {
   let newState = [];
   switch (action.type) {
@@ -35,13 +34,8 @@ const reduce = (state, action) => {
   return newState;
 }
 
-
 export const DiaryStateContext = React.createContext();
 export const DiaryDisaptchContext = React.createContext();
-
-
-
-
 
 function App() {
 
@@ -56,6 +50,7 @@ function App() {
   }, [])
 
   const dataId = useRef(0);
+  
   // CREATE
   const onCreate = (emotion, content, date) => {
     dispatch({
