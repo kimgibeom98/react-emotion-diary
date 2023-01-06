@@ -28,6 +28,12 @@ const DiaryList = ({ diaryList }) => {
   const [sortType, setSortType] = useState('lastest');
   const [filter, setFilter] = useState('all');
 
+  const MovePage = () => {
+    return (
+      <MyButton text={"새 일기 쓰기"} type={'positive'} onClick={() => navigate('/new')} />
+    )
+  };
+
   const getProcesedDiaryList = () => {
 
     const filterCallBack = (item) => {
@@ -61,7 +67,7 @@ const DiaryList = ({ diaryList }) => {
           <ControlMenu value={filter} onChange={setFilter} optionList={filterOptionList} />
         </div>
         <div className="right_col">
-          <MyButton text={"새 일기 쓰기"} type={'positive'} onClick={() => navigate('/new')} />
+          <MovePage />
         </div>
       </div>
       {getProcesedDiaryList().map((it) => (

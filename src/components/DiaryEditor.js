@@ -40,6 +40,29 @@ const DiaryEditor = ({ isEdit, originData }) => {
     navigate('/', { replace: true })
   }
 
+  const TitleHeader = () => {
+    return (
+      <MyHeader
+        headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
+        leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+        rightChild={isEdit && (
+          <MyButton text={"삭제하기"} type={'negative'} onClick={handelRemove} />
+        )} />
+    )
+  }
+
+  const BtnCancel = () => {
+    return (
+      <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
+    )
+  }
+
+  const BtnComplete = () => {
+    return (
+      <MyButton text={"작성완료"} type={"positive"} onClick={handelSubmit} />
+    )
+  }
+
   const handelRemove = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       onRemove(originData.id)
@@ -58,12 +81,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="DiaryEditor">
-      <MyHeader
-        headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
-        leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
-        rightChild={isEdit && (
-          <MyButton text={"삭제하기"} type={'negative'} onClick={handelRemove} />
-        )} />
+      <TitleHeader />
       <div>
         <section>
           <h4>오늘은 언제인가요?</h4>
@@ -85,8 +103,8 @@ const DiaryEditor = ({ isEdit, originData }) => {
         </section>
         <section>
           <div className="control_box">
-            <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
-            <MyButton text={"작성완료"} type={"positive"} onClick={handelSubmit} />
+            <BtnCancel />
+            <BtnComplete />
           </div>
         </section>
       </div>
