@@ -1,13 +1,27 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { DiaryDisaptchContext } from "../App";
 
-import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
+import MyHeader from "./MyHeader";
 import EmotionItem from "./EmotionItem";
 
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
+
+const TitleHeader = React.memo(() => {
+  console.log('TitleHeader')
+  return (
+    <MyHeader
+      headText={true ? "일기 수정하기" : "새 일기쓰기"}
+      leftChild={<MyButton text={"< 뒤로가기"} onClick={() => console.log(-1)} />}
+      rightChild={true && (
+        <MyButton text={"삭제하기"} type={'negative'} onClick={() => console.log(1)} />
+      )} />
+  )
+})
+
 
 const DiaryEditor = ({ isEdit, originData }) => {
 
@@ -40,16 +54,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     navigate('/', { replace: true })
   }
 
-  const TitleHeader = () => {
-    return (
-      <MyHeader
-        headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
-        leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
-        rightChild={isEdit && (
-          <MyButton text={"삭제하기"} type={'negative'} onClick={handelRemove} />
-        )} />
-    )
-  }
+
 
   const BtnCancel = () => {
     return (
@@ -63,12 +68,25 @@ const DiaryEditor = ({ isEdit, originData }) => {
     )
   }
 
+
   const handelRemove = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       onRemove(originData.id)
       navigate('/', { replace: true })
     }
-  }
+  };
+
+  // const TitleHeader = memo(() => {
+  //   console.log('TitleHeader')
+  //   return (
+  //     <MyHeader
+  //       headText={true ? "일기 수정하기" : "새 일기쓰기"}
+  //       leftChild={<MyButton text={"< 뒤로가기"} onClick={() => console.log(-1)} />}
+  //       rightChild={true && (
+  //         <MyButton text={"삭제하기"} type={'negative'} onClick={() => console.log(1)} />
+  //       )} />
+  //   )
+  // })
 
   useEffect(() => {
     // 수정하기
@@ -81,7 +99,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="DiaryEditor">
-      <TitleHeader />
+     <TitleHeader />
       <div>
         <section>
           <h4>오늘은 언제인가요?</h4>
