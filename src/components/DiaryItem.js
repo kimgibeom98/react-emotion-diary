@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import MyButton from "./MyButton";
+import CustomButton from "./CustomButton";
 
 const DiaryItem = ({ id, emotion, content, date }) => {
   // 이미지가 안나올경우 아래코드 2줄 추가
@@ -20,7 +20,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   const strDate = new Date(parseInt(date)).toLocaleDateString();
 
   return (
-    <div className="DiaryItem">
+    <section className="DiaryItem">
       <div onClick={goDetail} className={["emotion_img_wrapper", `emotion_img_wrapper_${emotion}`].join(" ")}>
         <img src={process.env.PUBLIC_URL + `assets/emotion${emotion}.png`} />
       </div>
@@ -29,9 +29,9 @@ const DiaryItem = ({ id, emotion, content, date }) => {
         <div className="diary_content_preview">{content.slice(0, 25)}</div>
       </div>
       <div>
-        <MyButton text={"수정하기"} onClick={goEdit} />
+        <CustomButton onClick={goEdit}>{'수정하기'}</CustomButton>
       </div>
-    </div>
+    </section>
   );
 }
 

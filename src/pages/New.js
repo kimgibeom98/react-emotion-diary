@@ -9,9 +9,9 @@ const New = () => {
   },[]);
 
   return (
-    <div>
+    <>
       <DiaryEditor />
-    </div>
+    </>
   )
 };
 

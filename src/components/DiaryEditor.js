@@ -6,7 +6,7 @@ import { DiaryDisaptchContext } from "../App";
 import EmotionItem from "./EmotionItem";
 import CancelButton from "./CancelButton"
 import TitleCreateandEdit from "./TitleCreateandEdit";
-import CompleteButton from "./CompleteButton";
+import CustomButton from "./CustomButton";
 
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
@@ -31,8 +31,8 @@ const DiaryEditor = ({ isEdit, originData }) => {
     setEmotion(emotion);
   }, []);
 
-  const handelSubmit = useCallback(() => {
-
+  const handelSubmit = () => {
+    console.log("타냐? 상세")
     if (content.length < 1) {
       contentRef.current.focus();
       return;
@@ -46,7 +46,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
 
     navigate('/', { replace: true })
-  },[content, emotion]);
+  };
 
   const handelRemove = useCallback(() => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
@@ -64,7 +64,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   }, [isEdit, originData])
 
   return (
-    <div className="DiaryEditor">
+    <section className="DiaryEditor">
       <TitleCreateandEdit isEdit={isEdit} onDel={handelRemove} />
       <div>
         <section>
@@ -88,11 +88,11 @@ const DiaryEditor = ({ isEdit, originData }) => {
         <section>
           <div className="control_box">
             <CancelButton />
-            <CompleteButton  handelSubmit={handelSubmit}/>
+            <CustomButton type={"positive"} onClick={handelSubmit}>{'작성완료'}</CustomButton>
           </div>
         </section>
       </div>
-    </div>
+    </section>
   )
 }
 

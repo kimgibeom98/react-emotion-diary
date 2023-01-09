@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import MyHeader from "../components/MyHeader";
-import MyButton from "../components/MyButton";
+import CustomButton from "../components/CustomButton";
 import { DiaryStateContext } from "../App";
 import DiaryList from "../components/DiaryList";
 
@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
     titleElement.innerHTML = `감정 일기장`;
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (diarylist.length >= 1) {
@@ -50,13 +50,11 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <MyHeader
-        headText={headText}
-        leftChild={<MyButton text={'<'} onClick={decreaseMonth} />}
-        rightChild={<MyButton text={'>'} onClick={increaseMonth} />} />
+    <>
+      <MyHeader headText={headText} leftChild={<CustomButton onClick={decreaseMonth}>{'<'}</CustomButton>}
+        rightChild={<CustomButton onClick={increaseMonth}>{'>'}</CustomButton>} />
       <DiaryList diaryList={data} />
-    </div>
+    </>
   )
 };
 

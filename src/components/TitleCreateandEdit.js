@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import MyButton from "./MyButton";
+import CustomButton from "./CustomButton";
 import MyHeader from "./MyHeader";
 
 const TitleCreateandEdit = ({ isEdit, onDel }) => {
@@ -8,9 +8,9 @@ const TitleCreateandEdit = ({ isEdit, onDel }) => {
   return (
     <MyHeader
       headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
-      leftChild={<MyButton text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+      leftChild={<CustomButton onClick={() => navigate(-1)}>{'< 뒤로가기'}</CustomButton>}
       rightChild={isEdit && (
-        <MyButton text={"삭제하기"} type={'negative'} onClick={onDel} />
+        <CustomButton type={'negative'} onClick={onDel}>{'삭제하기'}</CustomButton>
       )} />
   )
 };

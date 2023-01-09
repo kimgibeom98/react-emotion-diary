@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
-import MyButton from "../components/MyButton";
+import CustomButton from "../components/CustomButton";
 import MyHeader from "../components/MyHeader";
 
 import { getStringDate } from "../util/date";
@@ -36,10 +36,10 @@ const Diary = () => {
   } else {
     const curEmotiondata = emotionList.find((it) => parseInt(it.emotion_id) === parseInt(data.emotion))
     return (
-      <div className="DiaryPage">
+      <main className="DiaryPage">
         <MyHeader headText={`${getStringDate(new Date(data.date))} 기록`}
-          leftChild={<MyButton text={'< 뒤로가기'} onClick={() => navigate(-1)} />}
-          rightChild={<MyButton text={'수정하기'} onClick={() => navigate(`/edit/${data.id}`)} />} />
+          leftChild={<CustomButton onClick={() => navigate(-1)}>{'뒤로가기'}</CustomButton>}
+          rightChild={<CustomButton onClick={() => navigate(`/edit/${data.id}`)}>{'수정하기'}</CustomButton>} />
         <article>
           <section>
             <h4>오늘의 감정</h4>
@@ -57,7 +57,7 @@ const Diary = () => {
             </div>
           </section>
         </article>
-      </div>
+      </main>
     )
   }
 };

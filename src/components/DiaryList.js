@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
-import MyButton from "./MyButton";
+import CreateButton from "./CreateButton";
 
 const sortOptionList = [
   { value: "lastest", name: "최신순" },
@@ -28,11 +28,6 @@ const DiaryList = ({ diaryList }) => {
   const [sortType, setSortType] = useState('lastest');
   const [filter, setFilter] = useState('all');
 
-  const MovePage = () => {
-    return (
-      <MyButton text={"새 일기 쓰기"} type={'positive'} onClick={() => navigate('/new')} />
-    )
-  };
 
   const getProcesedDiaryList = () => {
 
@@ -60,20 +55,20 @@ const DiaryList = ({ diaryList }) => {
   }
 
   return (
-    <div className="DiaryList">
+    <section className="DiaryList">
       <div className="munu_wrapper">
         <div className="left_col">
           <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
           <ControlMenu value={filter} onChange={setFilter} optionList={filterOptionList} />
         </div>
         <div className="right_col">
-          <MovePage />
+          <CreateButton />
         </div>
       </div>
       {getProcesedDiaryList().map((it) => (
         <DiaryItem key={it.id} {...it} />
       ))}
-    </div>
+    </section>
   )
 }
 

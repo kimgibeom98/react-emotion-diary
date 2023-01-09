@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import MyButton from "./MyButton";
+import CustomButton from "./CustomButton";
 
 const CancelButton = () => {
 
   const navigate = useNavigate();
 
   return (
-    <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
+    <CustomButton onClick={() => navigate(-1)}>{'취소하기'}</CustomButton>
   );
 }
 
