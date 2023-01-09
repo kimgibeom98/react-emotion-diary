@@ -1,6 +1,5 @@
 import React from "react";
 const MyHeader = ({ headText, leftChild, rightChild }) => {
-  console.log(headText, leftChild, rightChild )
   return (
     <header>
       <div className="head_btn_left">{leftChild}</div>
