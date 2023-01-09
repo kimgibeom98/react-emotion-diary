@@ -10,14 +10,14 @@ import EmotionItem from "./EmotionItem";
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
 
-const TitleHeader = React.memo(() => {
-  console.log('TitleHeader')
+const TitleHeader = React.memo(({isEdit, onClick, onDel}) => {
+  console.log("타면안대")
   return (
     <MyHeader
-      headText={true ? "일기 수정하기" : "새 일기쓰기"}
-      leftChild={<MyButton text={"< 뒤로가기"} onClick={() => console.log(-1)} />}
-      rightChild={true && (
-        <MyButton text={"삭제하기"} type={'negative'} onClick={() => console.log(1)} />
+      headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
+      leftChild={<MyButton text={"< 뒤로가기"} onClick={onClick} />}
+      rightChild={isEdit && (
+        <MyButton text={"삭제하기"} type={'negative'} onClick={onDel} />
       )} />
   )
 })
@@ -99,7 +99,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="DiaryEditor">
-     <TitleHeader />
+     <TitleHeader isEdit={isEdit} onClick={() => navigate(-1)} onDel={handelRemove}/>
       <div>
         <section>
           <h4>오늘은 언제인가요?</h4>
