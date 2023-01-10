@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import CustomButton from "./CustomButton";
 
 const DiaryItem = ({ id, emotion, content, date }) => {
@@ -22,7 +23,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   return (
     <section className="DiaryItem">
       <div onClick={goDetail} className={["emotion_img_wrapper", `emotion_img_wrapper_${emotion}`].join(" ")}>
-        <img src={process.env.PUBLIC_URL + `assets/emotion${emotion}.png`} />
+        <img src={`${process.env.PUBLIC_URL}assets/emotion${emotion}.png`} />
       </div>
       <div className="info_wrapper" onClick={goDetail}>
         <div className="diary_date">{strDate}</div>

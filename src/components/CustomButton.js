@@ -1,6 +1,6 @@
-
 const CustomButton = ({type, onClick,children}) => {
-  const btnType = ['positive', 'negative'].includes(type) ? type : 'default';
+  const btnType = type || 'default';
+
   return (
     <button className={["CustomButton", `CustomButton_${btnType}`].join(" ")} onClick={onClick}>
       {children}

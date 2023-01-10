@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import CustomButton from "./CustomButton";
-import MyHeader from "./MyHeader";
+import CustomHeader from "./CustomHeader";
 
 const TitleCreateandEdit = ({ isEdit, onDel }) => {
   const navigate = useNavigate();
   return (
-    <MyHeader
+    <CustomHeader
       headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
       leftChild={<CustomButton onClick={() => navigate(-1)}>{'< 뒤로가기'}</CustomButton>}
       rightChild={isEdit && (

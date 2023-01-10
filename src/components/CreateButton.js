@@ -1,11 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import CustomButton from "./CustomButton";
 
 const CreateButton = () => {
-  console.log('일기 생성')
   const navigate = useNavigate();
 
   return (

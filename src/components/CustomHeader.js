@@ -1,5 +1,6 @@
 import React from "react";
-const MyHeader = ({ headText, leftChild, rightChild }) => {
+
+const CustomHeader = ({ headText, leftChild, rightChild }) => {
   return (
     <header>
       <div className="head_btn_left">{leftChild}</div>
@@ -9,4 +10,4 @@ const MyHeader = ({ headText, leftChild, rightChild }) => {
   )
 }
 
-export default React.memo(MyHeader);
+export default React.memo(CustomHeader);

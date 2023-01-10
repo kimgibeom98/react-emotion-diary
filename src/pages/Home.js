@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 
-import MyHeader from "../components/MyHeader";
+import CustomHeader from "../components/CustomHeader";
 import CustomButton from "../components/CustomButton";
-import { DiaryStateContext } from "../App";
 import DiaryList from "../components/DiaryList";
+
+import { DiaryStateContext } from "../App";
 
 const Home = () => {
 
@@ -51,7 +52,7 @@ const Home = () => {
 
   return (
     <>
-      <MyHeader headText={headText} leftChild={<CustomButton onClick={decreaseMonth}>{'<'}</CustomButton>}
+      <CustomHeader headText={headText} leftChild={<CustomButton onClick={decreaseMonth}>{'<'}</CustomButton>}
         rightChild={<CustomButton onClick={increaseMonth}>{'>'}</CustomButton>} />
       <DiaryList diaryList={data} />
     </>

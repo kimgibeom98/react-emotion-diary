@@ -11,10 +11,6 @@ import CustomButton from "./CustomButton";
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
 
-
-
-
-
 const DiaryEditor = ({ isEdit, originData }) => {
 
   const navigate = useNavigate();
@@ -32,7 +28,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
   }, []);
 
   const handelSubmit = () => {
-    console.log("타냐? 상세")
     if (content.length < 1) {
       contentRef.current.focus();
       return;
