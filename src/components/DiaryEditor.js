@@ -10,6 +10,7 @@ import CustomButton from "./CustomButton";
 
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
+import CustomHeader from "./CustomHeader";
 
 const DiaryEditor = ({ isEdit, originData }) => {
 
@@ -60,7 +61,11 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   return (
     <>
-      <TitleCreateandEdit isEdit={isEdit} onDel={handelRemove} />
+    <CustomHeader headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
+     leftChild={<CustomButton onClick={() => navigate(-1)}>{'< 뒤로가기'}</CustomButton>}
+     rightChild={isEdit && (
+      <CustomButton type={'negative'} onClick={handelRemove}>{'삭제하기'}</CustomButton>
+    )}/>
       <section className="DiaryEditor">
         <article>
           <h4>오늘은 언제인가요?</h4>
