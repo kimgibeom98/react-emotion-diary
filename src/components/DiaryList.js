@@ -57,7 +57,7 @@ const DiaryList = ({ diaryList }) => {
 
   return (
     <section className="DiaryList">
-      <div className="munu_wrapper">
+      <article className="munu_wrapper">
         <div className="left_col">
           <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
           <ControlMenu value={filter} onChange={setFilter} optionList={filterOptionList} />
@@ -65,7 +65,7 @@ const DiaryList = ({ diaryList }) => {
         <div className="right_col">
           <CreateButton />
         </div>
-      </div>
+      </article>
       {getProcesedDiaryList().map((it) => (
         <DiaryItem key={it.id} {...it} />
       ))}

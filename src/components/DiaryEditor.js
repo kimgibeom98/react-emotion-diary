@@ -59,35 +59,35 @@ const DiaryEditor = ({ isEdit, originData }) => {
   }, [isEdit, originData])
 
   return (
-    <section className="DiaryEditor">
+    <>
       <TitleCreateandEdit isEdit={isEdit} onDel={handelRemove} />
-      <div>
-        <section>
+      <section className="DiaryEditor">
+        <article>
           <h4>오늘은 언제인가요?</h4>
           <div className="input_box">
             <input className="input_date" value={date} onChange={(e) => setDate(e.target.value)} type='date' />
           </div>
-        </section>
-        <section>
+        </article>
+        <article>
           <h4>오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
             {emotionList.map((it) => <EmotionItem key={it.emotion_id} {...it} onClick={handleClickEmote} isSelected={it.emotion_id === emotion} />)}
           </div>
-        </section>
-        <section>
+        </article>
+        <article>
           <h4>오늘의 일기</h4>
           <div className="input_box text_wrapper">
             <textarea placeholder="오늘은 어땠나요" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)}></textarea>
           </div>
-        </section>
-        <section>
+        </article>
+        <article>
           <div className="control_box">
             <CancelButton />
             <CustomButton type={"positive"} onClick={handelSubmit}>{'작성완료'}</CustomButton>
           </div>
-        </section>
-      </div>
-    </section>
+        </article>
+      </section>
+    </>
   )
 }
 

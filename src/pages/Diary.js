@@ -36,11 +36,11 @@ const Diary = () => {
   } else {
     const curEmotiondata = emotionList.find((it) => parseInt(it.emotion_id) === parseInt(data.emotion))
     return (
-      <main className="DiaryPage">
+      <>
         <CustomHeader headText={`${getStringDate(new Date(data.date))} 기록`}
           leftChild={<CustomButton onClick={() => navigate(-1)}>{'뒤로가기'}</CustomButton>}
           rightChild={<CustomButton onClick={() => navigate(`/edit/${data.id}`)}>{'수정하기'}</CustomButton>} />
-        <article>
+        <article className="DiaryPage">
           <section>
             <h4>오늘의 감정</h4>
             <div className={["diary_img_wrapper", `diary_img_wrapper_${data.emotion}`].join(" ")}>
@@ -57,7 +57,7 @@ const Diary = () => {
             </div>
           </section>
         </article>
-      </main>
+      </>
     )
   }
 };

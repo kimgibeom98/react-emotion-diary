@@ -90,14 +90,14 @@ function App() {
         onRemove,
       }}>
         <BrowserRouter>
-          <div className='App'>
+          <main className='App'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/new' element={<New />} />
               <Route path='/edit/:id' element={<Edit />} />
               <Route path='/diary/:id' element={<Diary />} />
             </Routes>
-          </div>
+          </main>
         </BrowserRouter>
       </DiaryDisaptchContext.Provider>
     </DiaryStateContext.Provider>

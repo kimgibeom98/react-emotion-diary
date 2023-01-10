@@ -21,7 +21,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   const strDate = new Date(parseInt(date)).toLocaleDateString();
 
   return (
-    <section className="DiaryItem">
+    <article className="DiaryItem">
       <div onClick={goDetail} className={["emotion_img_wrapper", `emotion_img_wrapper_${emotion}`].join(" ")}>
         <img src={`${process.env.PUBLIC_URL}assets/emotion${emotion}.png`} />
       </div>
@@ -32,7 +32,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
       <div>
         <CustomButton onClick={goEdit}>{'수정하기'}</CustomButton>
       </div>
-    </section>
+    </article>
   );
 }
 
