@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom";
 
 import DiaryItem from "./DiaryItem";
 import CreateButton from "./CreateButton";
@@ -25,7 +24,6 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
 });
 
 const DiaryList = ({ diaryList }) => {
-  const navigate = useNavigate();
   const [sortType, setSortType] = useState('lastest');
   const [filter, setFilter] = useState('all');
 
@@ -47,7 +45,10 @@ const DiaryList = ({ diaryList }) => {
         return parseInt(a.date) - parseInt(b.date);
       }
     }
+    
     const copyList = JSON.parse(JSON.stringify(diaryList));
+    console.log(JSON.parse(JSON.stringify(diaryList)))
+    console.log(diaryList)
 
     const filteredList = filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it))
 

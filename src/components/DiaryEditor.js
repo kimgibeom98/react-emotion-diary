@@ -59,6 +59,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
   }, [isEdit, originData])
 
+
   return (
     <>
     <CustomHeader headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
@@ -87,7 +88,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
         </article>
         <article>
           <div className="control_box">
-            <CancelButton />
+            <CustomButton onClick={()=>console.log(123)}>{'취소하기'}</CustomButton>
             <CustomButton type={"positive"} onClick={handelSubmit}>{'작성완료'}</CustomButton>
           </div>
         </article>

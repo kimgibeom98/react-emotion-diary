@@ -1,4 +1,7 @@
+import React from "react";
+
 const CustomButton = ({type, onClick,children}) => {
+  console.log('타지망')
   const btnType = type || 'default';
 
   return (
@@ -12,4 +15,4 @@ CustomButton.defaultProps = {
   type: "default",
 }
 
-export default CustomButton;
+export default React.memo(CustomButton);
