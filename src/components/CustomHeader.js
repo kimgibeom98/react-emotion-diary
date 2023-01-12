@@ -8,6 +8,6 @@ const CustomHeader = ({ headText, leftChild, rightChild }) => {
       <div className="head_btn_right">{rightChild}</div>
     </header>
   )
-}
+};
 
 export default React.memo(CustomHeader);
