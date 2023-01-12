@@ -12,18 +12,18 @@ const DiaryItem = ({ id, emotion, content, date }) => {
 
   const goDetail = () => {
     navigate(`/diary/${id}`);
-  }
+  };
 
   const goEdit = () => {
     navigate(`/edit/${id}`);
-  }
+  };
 
   const strDate = new Date(parseInt(date)).toLocaleDateString();
 
   return (
     <article className="DiaryItem">
       <div onClick={goDetail} className={["emotion_img_wrapper", `emotion_img_wrapper_${emotion}`].join(" ")}>
-        <img src={`${process.env.PUBLIC_URL}assets/emotion${emotion}.png`} />
+        <img src={`${process.env.PUBLIC_URL}assets/emotion${emotion}.png`} alt="감정 이미지" />
       </div>
       <div className="info_wrapper" onClick={goDetail}>
         <div className="diary_date">{strDate}</div>
@@ -34,6 +34,6 @@ const DiaryItem = ({ id, emotion, content, date }) => {
       </div>
     </article>
   );
-}
+};
 
 export default React.memo(DiaryItem);

@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import React, { useCallback, useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 import DiaryItem from "./DiaryItem";
-import CreateButton from "./CreateButton";
+import CustomButton from "./CustomButton";
 
 const sortOptionList = [
   { value: "lastest", name: "최신순" },
@@ -24,37 +25,33 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
 });
 
 const DiaryList = ({ diaryList }) => {
+  const navigate = useNavigate();
   const [sortType, setSortType] = useState('lastest');
   const [filter, setFilter] = useState('all');
 
+  const copyList = diaryList;
 
-  const getProcesedDiaryList = () => {
-
-    const filterCallBack = (item) => {
-      if (filter === 'good') {
-        return parseInt(item.emotion) <= 3;
-      } else {
-        return parseInt(item.emotion) > 3;
-      }
+  const filterCallBack = (item) => {
+    if (filter === 'good') {
+      return parseInt(item.emotion) <= 3;
+    } else {
+      return parseInt(item.emotion) > 3;
     }
+  };
 
-    const compare = (a, b) => {
-      if (sortType === "lastest") {
-        return parseInt(b.date) - parseInt(a.date);
-      } else {
-        return parseInt(a.date) - parseInt(b.date);
-      }
+  const compare = (a, b) => {
+    if (sortType === "lastest") {
+      return parseInt(b.date) - parseInt(a.date);
+    } else {
+      return parseInt(a.date) - parseInt(b.date);
     }
-    
-    const copyList = JSON.parse(JSON.stringify(diaryList));
-    console.log(JSON.parse(JSON.stringify(diaryList)))
-    console.log(diaryList)
+  };
 
-    const filteredList = filter === 'all' ? copyList : copyList.filter((it) => filterCallBack(it))
+  const diaryListFilter = filter === 'all'
+    ? copyList
+    : copyList.filter((it) => filterCallBack(it))
 
-    const sortedList = filteredList.sort(compare);
-    return sortedList
-  }
+  const listSort = diaryListFilter.sort(compare);
 
   return (
     <section className="DiaryList">
@@ -64,15 +61,15 @@ const DiaryList = ({ diaryList }) => {
           <ControlMenu value={filter} onChange={setFilter} optionList={filterOptionList} />
         </div>
         <div className="right_col">
-          <CreateButton />
+          <CustomButton type={'positive'} onClick={useCallback(() => navigate('/new'), [navigate])}>{'새 일기 쓰기'}</CustomButton>
         </div>
       </article>
-      {getProcesedDiaryList().map((it) => (
+      {listSort.map((it) => (
         <DiaryItem key={it.id} {...it} />
       ))}
     </section>
   )
-}
+};
 
 DiaryList.defaultProps = {
   diaryList: [],

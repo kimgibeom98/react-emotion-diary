@@ -1,7 +1,6 @@
 import React from "react";
 
-const CustomButton = ({type, onClick,children}) => {
-  console.log('타지망')
+const CustomButton = ({ type, onClick, children }) => {
   const btnType = type || 'default';
 
   return (
@@ -9,10 +8,10 @@ const CustomButton = ({type, onClick,children}) => {
       {children}
     </button>
   )
-}
+};
 
 CustomButton.defaultProps = {
   type: "default",
-}
+};
 
 export default React.memo(CustomButton);

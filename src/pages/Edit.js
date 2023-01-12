@@ -5,7 +5,7 @@ import { DiaryStateContext } from "../App";
 import DiaryEditor from "../components/DiaryEditor";
 
 const Edit = () => {
-  
+
   const [originData, setOriginData] = useState();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -13,13 +13,12 @@ const Edit = () => {
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
-    titleElement.innerHTML = `감정 일기장 - ${id}번 일기 수정`;
-  },[]);
+    titleElement.textContent = `감정 일기장 - ${id}번 일기 수정`;
+  }, [id]);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
-      const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id))
-
+      const targetDiary = diaryList.find((it) => it.id.toString() === id);
       if (targetDiary) {
         setOriginData(targetDiary);
       } else {
@@ -27,8 +26,8 @@ const Edit = () => {
         navigate("/", { replace: true });
       }
     }
-  }, [id, diaryList]);
-  
+  }, [id, diaryList, navigate]);
+
   return (
     <>
       {originData && <DiaryEditor isEdit={true} originData={originData} />}

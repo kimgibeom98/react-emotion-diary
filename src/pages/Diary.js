@@ -17,7 +17,7 @@ const Diary = () => {
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
     titleElement.textContent = `감정 일기장 - ${id}번 일기`;
-  },[]);
+  }, [id]);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
@@ -25,11 +25,11 @@ const Diary = () => {
       if (targetDiary) {
         setData(targetDiary);
       } else {
-        // alert('없는 일기입니다.');
+        alert('없는 일기입니다.');
         navigate("/", { replace: true });
       }
     }
-  }, [id, diaryList]);
+  }, [id, diaryList, navigate]);
 
   if (!data) {
     return <div className="DiaryPage">로딩중입니다...</div>
@@ -44,7 +44,7 @@ const Diary = () => {
           <section>
             <h4>오늘의 감정</h4>
             <div className={["diary_img_wrapper", `diary_img_wrapper_${data.emotion}`].join(" ")}>
-              <img src={curEmotiondata.emotion_img} />
+              <img src={curEmotiondata.emotion_img} alt="감정 이미지" />
               <div className="emotion_descript">
                 {curEmotiondata.emotion_descript}
               </div>

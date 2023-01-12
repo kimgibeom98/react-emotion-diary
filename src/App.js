@@ -51,7 +51,7 @@ function App() {
     }
   }, [])
 
-  const dataId = useRef(0);
+  const dataId = useRef(1);
 
   // CREATE
   const onCreate = (emotion, content, date) => {

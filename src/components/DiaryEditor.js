@@ -4,8 +4,6 @@ import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { DiaryDisaptchContext } from "../App";
 
 import EmotionItem from "./EmotionItem";
-import CancelButton from "./CancelButton"
-import TitleCreateandEdit from "./TitleCreateandEdit";
 import CustomButton from "./CustomButton";
 
 import { getStringDate } from "../util/date";
@@ -49,7 +47,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       onRemove(originData.id)
       navigate('/', { replace: true })
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (isEdit) {
@@ -57,16 +55,16 @@ const DiaryEditor = ({ isEdit, originData }) => {
       setEmotion(originData.emotion);
       setContent(originData.content)
     }
-  }, [isEdit, originData])
+  }, [isEdit, originData]);
 
 
   return (
     <>
-    <CustomHeader headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
-     leftChild={<CustomButton onClick={() => navigate(-1)}>{'< 뒤로가기'}</CustomButton>}
-     rightChild={isEdit && (
-      <CustomButton type={'negative'} onClick={handelRemove}>{'삭제하기'}</CustomButton>
-    )}/>
+      <CustomHeader headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
+        leftChild={<CustomButton onClick={useCallback(() => navigate(-1), [navigate])}>{'< 뒤로가기'}</CustomButton>}
+        rightChild={isEdit && (
+          <CustomButton type={'negative'} onClick={handelRemove}>{'삭제하기'}</CustomButton>
+        )} />
       <section className="DiaryEditor">
         <article>
           <h4>오늘은 언제인가요?</h4>
@@ -88,13 +86,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
         </article>
         <article>
           <div className="control_box">
-            <CustomButton onClick={()=>console.log(123)}>{'취소하기'}</CustomButton>
+            <CustomButton onClick={useCallback(() => navigate(-1), [navigate])}>{'취소하기'}</CustomButton>
             <CustomButton type={"positive"} onClick={handelSubmit}>{'작성완료'}</CustomButton>
           </div>
         </article>
       </section>
     </>
-  )
-}
+  );
+};
 
 export default DiaryEditor;

@@ -15,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
-    titleElement.innerHTML = `감정 일기장`;
+    titleElement.textContent = `감정 일기장`;
   }, []);
 
   useEffect(() => {
@@ -36,19 +36,19 @@ const Home = () => {
       ).getTime();
       setData(diarylist.filter((it) => firstDay <= it.date && it.date <= lastDay));
     }
-  }, [diarylist, curDate])
+  }, [diarylist, curDate]);
 
   const increaseMonth = () => {
     setCurDate(
       new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate())
     );
-  }
+  };
 
   const decreaseMonth = () => {
     setCurDate(
       new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate())
-    )
-  }
+    );
+  };
 
   return (
     <>
