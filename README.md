@@ -1,5 +1,7 @@
 # react-emotion-diary
 
+![emotion-Animation](https://user-images.githubusercontent.com/77928818/217844646-9ef4d477-08ce-4649-89df-419b53af4494.gif)
+
 React로 제작한 감정 일기장 입니다.
 
 ## 기술 사항
