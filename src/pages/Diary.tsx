@@ -7,12 +7,15 @@ import CustomHeader from "../components/CustomHeader";
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
 
+import {DataInfo} from '../interfaces/Userinterface' 
+
+
 const Diary = () => {
 
   const { id } = useParams();
-  const diaryList = useContext(DiaryStateContext);
+  const diaryList = useContext(DiaryStateContext) as DataInfo[];
   const navigate = useNavigate();
-  const [data, setData] = useState();
+  const [data, setData] = useState<DataInfo>();
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
@@ -34,7 +37,7 @@ const Diary = () => {
   if (!data) {
     return <div className="DiaryPage">로딩중입니다...</div>
   } else {
-    const curEmotiondata = emotionList.find((it) => parseInt(it.emotion_id) === parseInt(data.emotion))
+    const curEmotiondata = emotionList.find((it) => Number(it.emotion_id) === Number(data.emotion))
     return (
       <>
         <CustomHeader headText={`${getStringDate(new Date(data.date))} 기록`}

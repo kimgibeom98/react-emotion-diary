@@ -9,12 +9,14 @@ import CustomButton from "./CustomButton";
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
 import CustomHeader from "./CustomHeader";
+import { EditDitail } from "../interfaces/Userinterface";
 
-const DiaryEditor = ({ isEdit, originData }) => {
+
+const DiaryEditor = ({ isEdit, originData } : EditDitail) => {
 
   const navigate = useNavigate();
 
-  const contentRef = useRef();
+  const contentRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState('');
   const [emotion, setEmotion] = useState(3);
 
@@ -22,7 +24,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const [date, setDate] = useState(getStringDate(new Date()));
 
-  const handleClickEmote = useCallback((emotion) => {
+  const handleClickEmote = useCallback((emotion : number) => {
     setEmotion(emotion);
   }, []);
 
@@ -51,7 +53,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   useEffect(() => {
     if (isEdit) {
-      setDate(getStringDate(new Date(parseInt(originData.date))))
+      setDate(getStringDate(new Date(Number(originData.date))))
       setEmotion(originData.emotion);
       setContent(originData.content)
     }

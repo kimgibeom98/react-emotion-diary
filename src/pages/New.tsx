@@ -10,7 +10,7 @@ const New = () => {
 
   return (
     <>
-      <DiaryEditor />
+      <DiaryEditor isEdit={undefined} originData={undefined} />
     </>
   )
 };

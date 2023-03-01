@@ -5,10 +5,11 @@ import CustomButton from "../components/CustomButton";
 import DiaryList from "../components/DiaryList";
 
 import { DiaryStateContext } from "../App";
+import {DataInfo} from '../interfaces/Userinterface' 
 
 const Home = () => {
 
-  const diarylist = useContext(DiaryStateContext);
+  const diarylist = useContext(DiaryStateContext) as DataInfo[];
   const [data, setData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1} 월`

@@ -7,35 +7,39 @@ import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
 
-const reduce = (state, action) => {
+import {DataInfo, DataType, DataTarget, FunType} from './interfaces/Userinterface' 
+
+
+const reduce = (state : any, action : DataType | DataTarget ) => {
   let newState = [];
-  switch (action.type) {
-    case 'INIT': {
-      return action.data;
+  const targetType = (action as DataType); 
+    switch (action.type) {
+      case 'INIT': {
+        return targetType.data;
+      }
+      case 'CREATE': {
+        newState = [targetType.data, ...state]
+        break;
+      }
+      case 'REMOVE': {
+        newState = state.filter((it :DataInfo) => it.id !== (action as DataTarget).targetId);
+        break;
+      }
+      case "EDIT": {
+        newState = state.map((it : DataInfo, index : number) =>
+          it.id === targetType.data.id ? { ...targetType.data } : it
+        );
+        break;
+      }
+      default:
+        return state
     }
-    case 'CREATE': {
-      newState = [action.data, ...state]
-      break;
-    }
-    case 'REMOVE': {
-      newState = state.filter((it) => it.id !== action.targetId);
-      break;
-    }
-    case "EDIT": {
-      newState = state.map((it) =>
-        it.id === action.data.id ? { ...action.data } : it
-      );
-      break;
-    }
-    default:
-      return state
-  }
   localStorage.setItem('diary', JSON.stringify(newState))
   return newState;
 }
 
-export const DiaryStateContext = React.createContext();
-export const DiaryDisaptchContext = React.createContext();
+export const DiaryStateContext = React.createContext<Array<object> | null>(null);
+export const DiaryDisaptchContext = React.createContext<FunType | null>(null);
 
 function App() {
 
@@ -43,7 +47,7 @@ function App() {
   useEffect(() => {
     const localData = localStorage.getItem('diary')
     if (localData) {
-      const diaryList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
+      const diaryList = JSON.parse(localData).sort((a : DataInfo, b : DataInfo) => Number(b.id) - Number(a.id));
       if (diaryList.length >= 1) {
         dataId.current = parseInt(diaryList[0].id) + 1;
         dispatch({ type: 'INIT', data: diaryList })
@@ -51,10 +55,10 @@ function App() {
     }
   }, [])
 
-  const dataId = useRef(1);
+  const dataId = useRef<number>(1);
 
   // CREATE
-  const onCreate = (emotion, content, date) => {
+  const onCreate = ( emotion : number, content : string, date : number) => {
     dispatch({
       type: "CREATE", data: {
         id: dataId.current,
@@ -66,11 +70,11 @@ function App() {
     dataId.current += 1;
   };
   // REMOVE
-  const onRemove = (targetId) => {
+  const onRemove = (targetId : number) =>  {
     dispatch({ type: "REMOVE", targetId });
   }
   // EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (targetId : number, date : number, content : string, emotion : number) => {
     dispatch({
       type: "EDIT",
       data: {
