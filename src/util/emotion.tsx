@@ -24,5 +24,4 @@ export const emotionList = [
     emotion_img: `${process.env.PUBLIC_URL}/assets/emotion5.png`,
     emotion_descript: '끔찍함'
   },
-
 ]

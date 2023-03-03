@@ -8,7 +8,7 @@ interface DataInfo {
 
 interface DataType {
     type: string;
-    data: DataInfo
+    data: DataInfo;
 }
 
 interface DataTarget {
@@ -17,17 +17,13 @@ interface DataTarget {
 }
 
 interface FunType {
-    onCreate(emotion : number, content : string, date : number | string) : void;
-    onEdit(targetId : number, date : number | string, content : string, emotion : number) : void;
-    onRemove(targetId : number) : void;
-}
-
-interface BooleanType {
-    isEdit: boolean;
+    onCreate(emotion: number, content: string, date: number | string): void;
+    onEdit(targetId: number, date: number | string, content: string, emotion: number): void;
+    onRemove(targetId: number): void;
 }
 
 interface EditDitail {
-    isEdit : boolean;
-    originData : DataInfo
-  }
-export type { DataInfo, DataType, DataTarget, FunType, BooleanType, EditDitail }
+    isEdit: boolean;
+    originData: DataInfo;
+}
+export type { DataInfo, DataType, DataTarget, FunType, EditDitail };

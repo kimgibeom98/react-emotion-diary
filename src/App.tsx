@@ -7,34 +7,33 @@ import New from './pages/New';
 import Edit from './pages/Edit';
 import Diary from './pages/Diary';
 
-import {DataInfo, DataType, DataTarget, FunType} from './interfaces/Userinterface' 
+import { DataInfo, DataType, DataTarget, FunType } from './interfaces/Userinterface';
 
-
-const reduce = (state : any, action : DataType | DataTarget ) => {
+const reduce = (state: any, action: DataType | DataTarget) => {
   let newState = [];
-  const targetType = (action as DataType); 
-    switch (action.type) {
-      case 'INIT': {
-        return targetType.data;
-      }
-      case 'CREATE': {
-        newState = [targetType.data, ...state]
-        break;
-      }
-      case 'REMOVE': {
-        newState = state.filter((it :DataInfo) => it.id !== (action as DataTarget).targetId);
-        break;
-      }
-      case "EDIT": {
-        newState = state.map((it : DataInfo, index : number) =>
-          it.id === targetType.data.id ? { ...targetType.data } : it
-        );
-        break;
-      }
-      default:
-        return state
+  const targetType = (action as DataType);
+  switch (action.type) {
+    case 'INIT': {
+      return targetType.data;
     }
-  localStorage.setItem('diary', JSON.stringify(newState))
+    case 'CREATE': {
+      newState = [targetType.data, ...state];
+      break;
+    }
+    case 'REMOVE': {
+      newState = state.filter((it: DataInfo) => it.id !== (action as DataTarget).targetId);
+      break;
+    }
+    case "EDIT": {
+      newState = state.map((it: DataInfo, index: number) =>
+        it.id === targetType.data.id ? { ...targetType.data } : it
+      );
+      break;
+    }
+    default:
+      return state
+  }
+  localStorage.setItem('diary', JSON.stringify(newState));
   return newState;
 }
 
@@ -47,18 +46,18 @@ function App() {
   useEffect(() => {
     const localData = localStorage.getItem('diary')
     if (localData) {
-      const diaryList = JSON.parse(localData).sort((a : DataInfo, b : DataInfo) => Number(b.id) - Number(a.id));
+      const diaryList = JSON.parse(localData).sort((a: DataInfo, b: DataInfo) => Number(b.id) - Number(a.id));
       if (diaryList.length >= 1) {
         dataId.current = parseInt(diaryList[0].id) + 1;
-        dispatch({ type: 'INIT', data: diaryList })
+        dispatch({ type: 'INIT', data: diaryList });
       }
     }
-  }, [])
+  }, []);
 
   const dataId = useRef<number>(1);
 
   // CREATE
-  const onCreate = ( emotion : number, content : string, date : number) => {
+  const onCreate = (emotion: number, content: string, date: number) => {
     dispatch({
       type: "CREATE", data: {
         id: dataId.current,
@@ -70,11 +69,11 @@ function App() {
     dataId.current += 1;
   };
   // REMOVE
-  const onRemove = (targetId : number) =>  {
+  const onRemove = (targetId: number) => {
     dispatch({ type: "REMOVE", targetId });
   }
   // EDIT
-  const onEdit = (targetId : number, date : number, content : string, emotion : number) => {
+  const onEdit = (targetId: number, date: number, content: string, emotion: number) => {
     dispatch({
       type: "EDIT",
       data: {
@@ -83,7 +82,7 @@ function App() {
         content,
         emotion
       }
-    })
+    });
   }
 
   return (
@@ -106,6 +105,6 @@ function App() {
       </DiaryDisaptchContext.Provider>
     </DiaryStateContext.Provider>
   )
-}
+};
 
 export default App;

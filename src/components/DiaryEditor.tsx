@@ -12,19 +12,18 @@ import CustomHeader from "./CustomHeader";
 import { EditDitail } from "../interfaces/Userinterface";
 
 
-const DiaryEditor = ({ isEdit, originData } : EditDitail) => {
+const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
 
   const navigate = useNavigate();
+  const contentRef = useRef<HTMLTextAreaElement>(null);
 
-  const contentRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState('');
   const [emotion, setEmotion] = useState(3);
+  const [date, setDate] = useState(getStringDate(new Date()));
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDisaptchContext);
 
-  const [date, setDate] = useState(getStringDate(new Date()));
-
-  const handleClickEmote = useCallback((emotion : number) => {
+  const handleClickEmote = useCallback((emotion: number) => {
     setEmotion(emotion);
   }, []);
 
@@ -34,13 +33,8 @@ const DiaryEditor = ({ isEdit, originData } : EditDitail) => {
       return;
     }
     if (window.confirm(isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 작성하시겠습니까?")) {
-      if (!isEdit) {
-        onCreate(emotion, content, date);
-      } else {
-        onEdit(originData.id, date, content, emotion);
-      }
+      !isEdit ? onCreate(emotion, content, date) : onEdit(originData.id, date, content, emotion);
     }
-
     navigate('/', { replace: true })
   };
 
@@ -58,7 +52,6 @@ const DiaryEditor = ({ isEdit, originData } : EditDitail) => {
       setContent(originData.content)
     }
   }, [isEdit, originData]);
-
 
   return (
     <>

@@ -1,15 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { DataInfo } from '../interfaces/Userinterface'
 import CustomButton from "./CustomButton";
 
-const DiaryItem = ({ id, emotion, content, date }) => {
-  // 이미지가 안나올경우 아래코드 2줄 추가
-  const env = process.env;
-  env.PUBLIC_URL = env.PUBLIC_URL || "";
+const DiaryItem = ({ id, emotion, content, date }: DataInfo) => {
 
   const navigate = useNavigate();
-
   const goDetail = () => {
     navigate(`/diary/${id}`);
   };
@@ -18,7 +15,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
     navigate(`/edit/${id}`);
   };
 
-  const strDate = new Date(parseInt(date)).toLocaleDateString();
+  const strDate = new Date(Number(date)).toLocaleDateString();
 
   return (
     <article className="DiaryItem">

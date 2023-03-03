@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
 
 import DiaryEditor from "../components/DiaryEditor";
-import {DataInfo} from '../interfaces/Userinterface' 
+import { DataInfo } from '../interfaces/Userinterface'
 
 
 const Edit = () => {
@@ -18,10 +18,9 @@ const Edit = () => {
     titleElement.textContent = `감정 일기장 - ${id}번 일기 수정`;
   }, [id]);
 
-
   useEffect(() => {
     if (diaryList.length >= 1) {
-      const targetDiary = diaryList.find((it) => it.id.toString() === id) ;
+      const targetDiary = diaryList.find((it) => it.id.toString() === id);
       if (targetDiary) {
         setOriginData(targetDiary);
       } else {

@@ -7,11 +7,9 @@ import CustomHeader from "../components/CustomHeader";
 import { getStringDate } from "../util/date";
 import { emotionList } from "../util/emotion";
 
-import {DataInfo} from '../interfaces/Userinterface' 
-
+import { DataInfo } from '../interfaces/Userinterface'
 
 const Diary = () => {
-
   const { id } = useParams();
   const diaryList = useContext(DiaryStateContext) as DataInfo[];
   const navigate = useNavigate();

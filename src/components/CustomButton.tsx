@@ -1,6 +1,12 @@
-import React from "react";
+import React, { MouseEventHandler, ReactNode } from "react";
 
-const CustomButton = ({ type, onClick, children }) => {
+interface CustomButtonType {
+  type: String;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  children: ReactNode;
+}
+
+const CustomButton = ({ type, onClick, children }: CustomButtonType) => {
   const btnType = type || 'default';
 
   return (

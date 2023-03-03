@@ -1,15 +1,14 @@
 import React from "react";
 
-
 interface IteomInfo {
   emotion_id: number;
-  emotion_img : string
-  emotion_descript : String;
-  onClick : React.MouseEvent<HTMLElement>;
-  isSelected : boolean;
+  emotion_img: string
+  emotion_descript: String;
+  onClick(emotion: number): void;
+  isSelected: boolean;
 }
 
-const EmotionItem = ({ emotion_id, emotion_img, emotion_descript, onClick, isSelected } : IteomInfo) => {
+const EmotionItem = ({ emotion_id, emotion_img, emotion_descript, onClick, isSelected }: IteomInfo) => {
   return (
     <div onClick={() => onClick(emotion_id)} className={["EmotionItem",
       isSelected ? `EmotionItem_on${emotion_id}` : `EmotionItem_off`].join(" ")}>

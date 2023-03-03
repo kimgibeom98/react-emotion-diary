@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import DiaryItem from "./DiaryItem";
 import CustomButton from "./CustomButton";
+import { DataInfo } from '../interfaces/Userinterface'
 
 const sortOptionList = [
   { value: "lastest", name: "최신순" },
@@ -13,9 +14,20 @@ const filterOptionList = [
   { value: "all", name: "전부다" },
   { value: "good", name: "좋은 감정만" },
   { value: "bad", name: "안좋은 감정만" }
-]
+];
 
-const ControlMenu = React.memo(({ value, onChange, optionList }) => {
+interface OptionType {
+  value: string;
+  name: string;
+}
+
+interface SelectType {
+  value: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  optionList: Array<OptionType>
+}
+
+const ControlMenu = React.memo(({ value, onChange, optionList }: SelectType) => {
   return (
     <select className="ControlMenu" value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((it, idx) =>
@@ -24,26 +36,30 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   );
 });
 
-const DiaryList = ({ diaryList }) => {
+interface ListData {
+  diaryList: DataInfo[];
+}
+
+const DiaryList = ({ diaryList }: ListData) => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState('lastest');
   const [filter, setFilter] = useState('all');
 
   const copyList = diaryList;
 
-  const filterCallBack = (item) => {
+  const filterCallBack = (item: DataInfo) => {
     if (filter === 'good') {
-      return parseInt(item.emotion) <= 3;
+      return Number(item.emotion) <= 3;
     } else {
-      return parseInt(item.emotion) > 3;
+      return Number(item.emotion) > 3;
     }
   };
 
-  const compare = (a, b) => {
+  const compare = (a: DataInfo, b: DataInfo) => {
     if (sortType === "lastest") {
-      return parseInt(b.date) - parseInt(a.date);
+      return Number(b.date) - Number(a.date);
     } else {
-      return parseInt(a.date) - parseInt(b.date);
+      return Number(a.date) - Number(b.date);
     }
   };
 
