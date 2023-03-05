@@ -10,8 +10,10 @@ import Diary from './pages/Diary';
 import { DataInfo, DataType, DataTarget, FunType } from './interfaces/Userinterface';
 
 const reduce = (state: any, action: DataType | DataTarget) => {
+
   let newState = [];
   const targetType = (action as DataType);
+
   switch (action.type) {
     case 'INIT': {
       return targetType.data;
@@ -57,7 +59,7 @@ function App() {
   const dataId = useRef<number>(1);
 
   // CREATE
-  const onCreate = (emotion: number, content: string, date: number) => {
+  const onCreate = (emotion: number, content: string, date: string) => {
     dispatch({
       type: "CREATE", data: {
         id: dataId.current,
@@ -73,7 +75,7 @@ function App() {
     dispatch({ type: "REMOVE", targetId });
   }
   // EDIT
-  const onEdit = (targetId: number, date: number, content: string, emotion: number) => {
+  const onEdit = (targetId: number, date: string, content: string, emotion: number) => {
     dispatch({
       type: "EDIT",
       data: {

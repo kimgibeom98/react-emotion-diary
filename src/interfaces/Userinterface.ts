@@ -17,8 +17,8 @@ interface DataTarget {
 }
 
 interface FunType {
-    onCreate(emotion: number, content: string, date: number | string): void;
-    onEdit(targetId: number, date: number | string, content: string, emotion: number): void;
+    onCreate(emotion: number, content: string, date: string): void;
+    onEdit(targetId: number, date: string, content: string, emotion: number): void;
     onRemove(targetId: number): void;
 }
 
