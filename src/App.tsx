@@ -39,7 +39,7 @@ const reduce = (state: any, action: DataType | DataTarget) => {
   return newState;
 }
 
-export const DiaryStateContext = React.createContext<Array<object> | null>(null);
+export const DiaryStateContext = React.createContext<Array<DataInfo> | null>(null);
 export const DiaryDisaptchContext = React.createContext<FunType | null>(null);
 
 function App() {
