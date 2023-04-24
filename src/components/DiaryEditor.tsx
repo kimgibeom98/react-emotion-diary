@@ -11,7 +11,6 @@ import { emotionList } from "../util/emotion";
 import CustomHeader from "./CustomHeader";
 import { EditDitail } from "../interfaces/Userinterface";
 
-
 const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
 
   const navigate = useNavigate();
