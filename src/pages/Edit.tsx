@@ -5,7 +5,6 @@ import { DiaryStateContext } from "../App";
 import DiaryEditor from "../components/DiaryEditor";
 import { DataInfo } from '../interfaces/Userinterface'
 
-
 const Edit = () => {
 
   const [originData, setOriginData] = useState<DataInfo>();

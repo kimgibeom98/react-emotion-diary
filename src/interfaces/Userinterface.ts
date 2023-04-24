@@ -1,4 +1,3 @@
-
 interface DataInfo {
     id: number;
     date: number;
