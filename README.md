@@ -5,6 +5,8 @@
 React 기초 문법 공부를 마친 후 공부한 내용을 활용해서 제작한 첫 React 토이 프로젝트입니다.
 처음에는 JSX 문법을 이용하여 기능구현을 하였으나 프로젝트 완성 후 Typescript 공부를 시작하였고 Typescript 기초 문법을 익힌 후 TSX 문법으로 수정하였습니다.
 
+### URL : https://gibeom-project.web.app/
+
 ## 기술 사항
 * 일기생성
 * 일기수정
