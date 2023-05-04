@@ -10,12 +10,6 @@ const sortOptionList = [
   { value: "oldest", name: "오래된 순" }
 ];
 
-const filterOptionList = [
-  { value: "all", name: "전부다" },
-  { value: "good", name: "좋은 감정만" },
-  { value: "bad", name: "안좋은 감정만" }
-];
-
 interface OptionType {
   value: string;
   name: string;
@@ -43,17 +37,9 @@ interface ListData {
 const DiaryList = ({ diaryList }: ListData) => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState('lastest');
-  const [filter, setFilter] = useState('all');
-
+  const [searchValue, setsearchValue] = useState('');
   const copyList = diaryList;
 
-  const filterCallBack = (item: DataInfo) => {
-    if (filter === 'good') {
-      return Number(item.emotion) <= 3;
-    } else {
-      return Number(item.emotion) > 3;
-    }
-  };
 
   const compare = (a: DataInfo, b: DataInfo) => {
     if (sortType === "lastest") {
@@ -63,18 +49,19 @@ const DiaryList = ({ diaryList }: ListData) => {
     }
   };
 
-  const diaryListFilter = filter === 'all'
-    ? copyList
-    : copyList.filter((it) => filterCallBack(it))
+  const diarySearch = (e : React.ChangeEvent<HTMLInputElement>) => {
+    setsearchValue(e.target.value)
+  }
 
-  const listSort = diaryListFilter.sort(compare);
+
+  const listSort = copyList.sort(compare);
 
   return (
     <section className="DiaryList">
       <article className="munu_wrapper">
         <div className="left_col">
           <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
-          <ControlMenu value={filter} onChange={setFilter} optionList={filterOptionList} />
+          <input className="SearchInput" placeholder="검색" value={searchValue} onChange={diarySearch} />
         </div>
         <div className="right_col">
           <CustomButton type={'positive'} onClick={useCallback(() => navigate('/new'), [navigate])}>{'새 일기 쓰기'}</CustomButton>

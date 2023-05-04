@@ -1,13 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { DiaryDisaptchContext } from "../App";
 
-import EmotionItem from "./EmotionItem";
 import CustomButton from "./CustomButton";
 
 import { getStringDate } from "../util/date";
-import { emotionList } from "../util/emotion";
 import CustomHeader from "./CustomHeader";
 import { EditDitail } from "../interfaces/Userinterface";
 
@@ -21,10 +18,6 @@ const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
   const [date, setDate] = useState(getStringDate(new Date()));
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDisaptchContext);
-
-  const handleClickEmote = useCallback((emotion: number) => {
-    setEmotion(emotion);
-  }, []);
 
   const handelSubmit = () => {
     if (content.length < 1) {
@@ -64,12 +57,6 @@ const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
           <h4>오늘은 언제인가요?</h4>
           <div className="input_box">
             <input className="input_date" value={date} onChange={(e) => setDate(e.target.value)} type='date' />
-          </div>
-        </article>
-        <article>
-          <h4>오늘의 감정</h4>
-          <div className="input_box emotion_list_wrapper">
-            {emotionList.map((it) => <EmotionItem key={it.emotion_id} {...it} onClick={handleClickEmote} isSelected={it.emotion_id === emotion} />)}
           </div>
         </article>
         <article>
