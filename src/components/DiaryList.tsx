@@ -37,7 +37,6 @@ interface ListData {
 const DiaryList = ({ diaryList }: ListData) => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState('lastest');
-  const [searchValue, setsearchValue] = useState('');
   const copyList = diaryList;
 
 
@@ -48,20 +47,20 @@ const DiaryList = ({ diaryList }: ListData) => {
       return Number(a.date) - Number(b.date);
     }
   };
-
-  const diarySearch = (e : React.ChangeEvent<HTMLInputElement>) => {
-    setsearchValue(e.target.value)
-  }
-
-
   const listSort = copyList.sort(compare);
+
+  const diarySearch = (e : React.KeyboardEvent<HTMLInputElement>) => {
+    console.log(e.currentTarget.value)
+    let targetSort =  listSort.filter((it : DataInfo) => {it.title.includes(e.currentTarget.value)})
+    console.log(targetSort, e.currentTarget.value)
+  }
 
   return (
     <section className="DiaryList">
       <article className="munu_wrapper">
         <div className="left_col">
           <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
-          <input className="SearchInput" placeholder="검색" value={searchValue} onChange={diarySearch} />
+          <input className="SearchInput" placeholder="검색" onKeyUp={diarySearch} />
         </div>
         <div className="right_col">
           <CustomButton type={'positive'} onClick={useCallback(() => navigate('/new'), [navigate])}>{'새 일기 쓰기'}</CustomButton>

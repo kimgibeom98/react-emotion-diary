@@ -59,13 +59,14 @@ function App() {
   const dataId = useRef<number>(1);
 
   // CREATE
-  const onCreate = (emotion: number, content: string, date: string) => {
+  const onCreate = (emotion: number, content: string, date: string, title: string) => {
     dispatch({
       type: "CREATE", data: {
         id: dataId.current,
         date: new Date(date).getTime(),
         content,
-        emotion
+        emotion,
+        title
       }
     })
     dataId.current += 1;
@@ -75,14 +76,15 @@ function App() {
     dispatch({ type: "REMOVE", targetId });
   }
   // EDIT
-  const onEdit = (targetId: number, date: string, content: string, emotion: number) => {
+  const onEdit = (targetId: number, date: string, content: string, emotion: number, title: string) => {
     dispatch({
       type: "EDIT",
       data: {
         id: targetId,
         date: new Date(date).getTime(),
         content,
-        emotion
+        emotion,
+        title
       }
     });
   }

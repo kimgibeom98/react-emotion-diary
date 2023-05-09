@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { DataInfo } from '../interfaces/Userinterface'
 
-const DiaryItem = ({ id, content, date }: DataInfo) => {
-
+const DiaryItem = ({ id, content, date, title }: DataInfo) => {
   const navigate = useNavigate();
   const goDetail = () => {
     navigate(`/diary/${id}`);
@@ -19,6 +18,7 @@ const DiaryItem = ({ id, content, date }: DataInfo) => {
   return (
     <article className="DiaryItem">
       <div className="info_wrapper" onClick={goDetail}>
+        <div className="diary_title">{title}</div>
         <div className="diary_date">{strDate}</div>
         <div className="diary_content_preview">{content.slice(0, 25)}</div>
       </div>

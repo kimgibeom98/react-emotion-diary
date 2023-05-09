@@ -41,6 +41,12 @@ const Diary = () => {
           rightChild={<CustomButton onClick={() => navigate(`/edit/${data.id}`)}>{'수정하기'}</CustomButton>} />
         <article className="DiaryPage">
           <section>
+            <h4>일기 제목</h4>
+            <div className="diary_content_wrapper diary_title_wrapper">
+              <p>{data.title}</p>
+            </div>
+          </section>
+          <section>
             <h4>오늘의 일기</h4>
             <div className="diary_content_wrapper">
               <p>{data.content}</p>
