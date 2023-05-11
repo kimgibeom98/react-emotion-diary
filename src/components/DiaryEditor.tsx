@@ -15,7 +15,6 @@ const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
   const contentRef = useRef<HTMLTextAreaElement>(null);
 
   const [content, setContent] = useState('');
-  const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState(getStringDate(new Date()));
   const [title, setTitle] = useState('');
 
@@ -30,7 +29,7 @@ const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
       return;
     }
     if (window.confirm(isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 작성하시겠습니까?")) {
-      !isEdit ? onCreate(emotion, content, date, title) : onEdit(originData.id, date, content, emotion, title);
+      !isEdit ? onCreate(content, date, title) : onEdit(originData.id, date, content, title);
     }
     navigate('/', { replace: true })
   };
@@ -45,7 +44,6 @@ const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
   useEffect(() => {
     if (isEdit) {
       setDate(getStringDate(new Date(Number(originData.date))))
-      setEmotion(originData.emotion);
       setContent(originData.content)
       setTitle(originData.title)
     }
@@ -61,21 +59,15 @@ const DiaryEditor = ({ isEdit, originData }: EditDitail) => {
       <section className="DiaryEditor">
         <article>
           <h4>일기 제목</h4>
-          <div className="input_box text_wrapper">
-            <input placeholder="제목을 입력해 주세요" ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} />
-          </div>
+          <input placeholder="제목을 입력해 주세요" ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} />
         </article>
         <article>
           <h4>오늘은 언제인가요?</h4>
-          <div className="input_box">
-            <input className="input_date" value={date} onChange={(e) => setDate(e.target.value)} type='date' />
-          </div>
+          <input className="input_date" value={date} onChange={(e) => setDate(e.target.value)} type='date' />
         </article>
         <article>
           <h4>오늘의 일기</h4>
-          <div className="input_box text_wrapper">
-            <textarea placeholder="오늘은 어땠나요" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)}></textarea>
-          </div>
+          <textarea placeholder="오늘은 어땠나요" ref={contentRef} value={content} onChange={(e) => setContent(e.target.value)}></textarea>
         </article>
         <article>
           <div className="control_box">

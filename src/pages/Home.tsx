@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
-    titleElement.textContent = `감정 일기장`;
+    titleElement.textContent = `Simple Diary`;
   }, []);
 
   useEffect(() => {

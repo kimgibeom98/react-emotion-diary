@@ -23,7 +23,7 @@ interface SelectType {
 
 const ControlMenu = React.memo(({ value, onChange, optionList }: SelectType) => {
   return (
-    <select className="ControlMenu" value={value} onChange={(e) => onChange(e.target.value)}>
+    <select className="control_menu" value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((it, idx) =>
         <option key={idx} value={it.value}>{it.name}</option>)}
     </select>
@@ -37,6 +37,7 @@ interface ListData {
 const DiaryList = ({ diaryList }: ListData) => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState('lastest');
+  const [searchValue, setSearchvalue] = useState('');
   const copyList = diaryList;
 
 
@@ -47,20 +48,19 @@ const DiaryList = ({ diaryList }: ListData) => {
       return Number(a.date) - Number(b.date);
     }
   };
-  const listSort = copyList.sort(compare);
 
-  const diarySearch = (e : React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value)
-    let targetSort =  listSort.filter((it : DataInfo) => {it.title.includes(e.currentTarget.value)})
-    console.log(targetSort, e.currentTarget.value)
-  }
+  const diaryListFilter = searchValue.length === 0
+    ? copyList
+    : copyList.filter((it: DataInfo) => it.title.includes(searchValue))
+
+  let listSort = diaryListFilter.sort(compare);
 
   return (
     <section className="DiaryList">
       <article className="munu_wrapper">
         <div className="left_col">
           <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
-          <input className="SearchInput" placeholder="검색" onKeyUp={diarySearch} />
+          <input className="search_input" placeholder="검색" onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => { setSearchvalue(e.currentTarget.value); }} />
         </div>
         <div className="right_col">
           <CustomButton type={'positive'} onClick={useCallback(() => navigate('/new'), [navigate])}>{'새 일기 쓰기'}</CustomButton>

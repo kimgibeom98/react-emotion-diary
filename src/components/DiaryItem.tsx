@@ -18,12 +18,12 @@ const DiaryItem = ({ id, content, date, title }: DataInfo) => {
   return (
     <article className="DiaryItem">
       <div className="info_wrapper" onClick={goDetail}>
-        <div className="diary_title">{title}</div>
-        <div className="diary_date">{strDate}</div>
-        <div className="diary_content_preview">{content.slice(0, 25)}</div>
+        <strong className="diary_title">{title}</strong>
+        <span className="diary_date">{strDate}</span>
+        <p className="diary_content_preview">{content.slice(0, 25)}</p>
       </div>
       <div>
-        <button className="edit-btn" onClick={goEdit}>{'수정하기'}</button>
+        <button className="edit_btn" onClick={goEdit}>{'수정하기'}</button>
       </div>
     </article>
   );

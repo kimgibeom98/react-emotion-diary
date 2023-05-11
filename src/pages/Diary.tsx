@@ -16,7 +16,7 @@ const Diary = () => {
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName('title')[0];
-    titleElement.textContent = `감정 일기장 - ${id}번 일기`;
+    titleElement.textContent = `Simple Diary - ${id}번 일기`;
   }, [id]);
 
   useEffect(() => {
@@ -39,20 +39,11 @@ const Diary = () => {
         <CustomHeader headText={`${getStringDate(new Date(data.date))} 기록`}
           leftChild={<CustomButton onClick={() => navigate(-1)}>{'뒤로가기'}</CustomButton>}
           rightChild={<CustomButton onClick={() => navigate(`/edit/${data.id}`)}>{'수정하기'}</CustomButton>} />
-        <article className="DiaryPage">
-          <section>
-            <h4>일기 제목</h4>
-            <div className="diary_content_wrapper diary_title_wrapper">
-              <p>{data.title}</p>
-            </div>
-          </section>
-          <section>
-            <h4>오늘의 일기</h4>
-            <div className="diary_content_wrapper">
-              <p>{data.content}</p>
-            </div>
-          </section>
-        </article>
+        <section className="DiaryPage">
+          <p className="diary_title_wrapper">{data.title}</p>
+          <p className="diary_date_wrapper">{getStringDate(new Date(data.date))}</p>
+          <p className="diary_content_wrapper">{data.content}</p>
+        </section>
       </>
     )
   }
