@@ -60,7 +60,7 @@ const DiaryList = ({ diaryList }: ListData) => {
       <article className="munu_wrapper">
         <div className="left_col">
           <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
-          <input className="search_input" placeholder="검색" onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => { setSearchvalue(e.currentTarget.value); }} />
+          <input className="search_input" placeholder="제목 검색" onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => { setSearchvalue(e.currentTarget.value); }} />
         </div>
         <div className="right_col">
           <CustomButton type={'positive'} onClick={useCallback(() => navigate('/new'), [navigate])}>{'새 일기 쓰기'}</CustomButton>
